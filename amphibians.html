@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редкие амфибии Восточного Казахстана</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .animal-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .animal {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 180px;
+        }
+        .animal:hover {
+            transform: scale(1.05);
+        }
+        .animal img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: 10% auto;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">Редкие амфибии Восточного Казахстана</div>
+
+<div class="container">
+    <a href="index.html" class="back-btn">Вернуться на главную</a>
+    <div class="animal-list">
+        <div class="animal" onclick="openModal('siberian-salamander')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Salamandrella_keyserlingii.jpg/1200px-Salamandrella_keyserlingii.jpg" alt="Сибирская саламандра">
+            <p><b>Сибирская саламандра</b></p>
+        </div>
+        <div class="animal" onclick="openModal('lake-frog')">
+            <img src="https://lh4.googleusercontent.com/proxy/8hogRoffnybUYegP0fLzk0g13kwc3pjHxLNFxxSd67p-zG8FUQC7iHjGbYHOU4ndxYqiXALjoR07r_p0Nd1qwY6lEEFzJvWMOXo" alt="Озерная лягушка">
+            <p><b>Озерная лягушка</b></p>
+        </div>
+        <div class="animal" onclick="openModal('green-toad')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bufo_viridis_11.jpg/1200px-Bufo_viridis_11.jpg" alt="Зеленая жаба">
+            <p><b>Зеленая жаба</b></p>
+        </div>
+        <div class="animal" onclick="openModal('asian-frog')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Central_Asian_Frog_imported_from_iNaturalist_photo_198887129_on_9_January_2023.jpg" alt="Азиатская лягушка">
+            <p><b>Азиатская лягушка</b></p>
+        </div>
+        <div class="animal" onclick="openModal('european-tree-frog')">
+            <img src="https://img.freepik.com/free-photo/redeyed-tree-frog-closeup-leaves-redeyed-tree-frog-agalychnis-callidryas-closeup-flower_488145-3125.jpg" alt="Европейская квакша">
+            <p><b>Европейская квакша</b></p>
+        </div>
+    </div>
+</div>
+
+<div id="modal-container" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-info"></p>
+    </div>
+</div>
+
+
+<script>
+    function openModal(id) {
+        let info = {
+            "siberian-salamander": "🌍 Амфибия.\n📍 ВКО, Сибирь.\n🔢 Численность снижается.\n⚠ Загрязнение рек.\n✅ Заповедники.\n💡 Переживает морозы до -40°C!",
+            "lake-frog": "🌍 Лягушка.\n📍 Казахстан, Европа.\n🔢 5000 особей.\n⚠ Потеря среды.\n✅ Водоохранные зоны.\n💡 Может прыгать на 1.5 м!",
+            "green-toad": "🌍 Жаба.\n📍 ВКО, Россия.\n🔢 2000 особей.\n⚠ Урбанизация.\n✅ Охрана водоемов.\n💡 Может менять цвет!",
+            "asian-frog": "🌍 Лягушка.\n📍 Казахстан, Китай.\n🔢 3000 особей.\n⚠ Загрязнение вод.\n✅ Заповедники.\n💡 Хорошо лазает по деревьям!",
+            "european-tree-frog": "🌍 Квакша.\n📍 Европа, Казахстан.\n🔢 1000 особей.\n⚠ Вырубка лесов.\n✅ Охрана мест обитания.\n💡 Может карабкаться по стеклу!"
+        };
+
+        document.getElementById("modal-title").innerText = id.replace("-", " ");
+        document.getElementById("modal-info").innerText = info[id];
+        document.getElementById("modal-container").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("modal-container").style.display = "none";
+    }
+</script>
+<div class="footer">
+    <p>Автор: ученица 8Б класса Гурина Дарья</p>
+    <p>Руководитель: Учитель физики и информатики Октябрь Акиык</p>
+</div>
+
+</body>
+</html>

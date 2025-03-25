@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Птицы Восточного Казахстана</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .animal-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .animal {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 180px;
+        }
+        .animal:hover {
+            transform: scale(1.05);
+        }
+        .animal img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: 10% auto;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">Птицы Восточного Казахстана</div>
+
+<div class="container">
+    <a href="index.html" class="back-btn">Вернуться на главную</a>
+    <div class="animal-list">
+        <div class="animal" onclick="openModal('baloban')">
+            <img src="https://www.zoopark-rostov.ru/images/givotnye/baloban/baloban.jpg" alt="Балобан">
+            <p><b>Балобан</b></p>
+        </div>
+        <div class="animal" onclick="openModal('golden-eagle')">
+            <img src="https://rarebirds.ru/wp-content/uploads/2019/11/berkut_3.jpg" alt="Беркут">
+            <p><b>Беркут</b></p>
+        </div>
+        <div class="animal" onclick="openModal('white-tailed-eagle')">
+            <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/8972/large.jpg" alt="Орлан-белохвост">
+            <p><b>Орлан-белохвост</b></p>
+        </div>
+        <div class="animal" onclick="openModal('whooper-swan')">
+            <img src="https://yar-zoo.ru/media/zoo/images/Klikun_919498b27609c9f8e052d47db0a16ecc.jpg" alt="Лебедь-кликун">
+            <p><b>Лебедь-кликун</b></p>
+        </div>
+        <div class="animal" onclick="openModal('black-stork')">
+            <img src="https://malinkibirds.ru/wp-content/uploads/2023/07/5eff466dabdfb2c4ba66.jpeg" alt="Черный аист">
+            <p><b>Черный аист</b></p>
+        </div>
+        <div class="animal" onclick="openModal('steppe-eagle')">
+            <img src="https://redbookrf.ru/wp-content/uploads/2015/02/obl-24.jpg" alt="Степной орел">
+            <p><b>Степной орел</b></p>
+        </div>
+        <div class="animal" onclick="openModal('saker-falcon')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Falco_peregrinus_-_01.jpg/1200px-Falco_peregrinus_-_01.jpg" alt="Сапсан">
+            <p><b>Сапсан</b></p>
+        </div>
+        <div class="animal" onclick="openModal('great-bustard')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/%D0%94%D1%80%D0%BE%D1%84%D0%B0_Otis_tarda.jpg" alt="Дрофа">
+            <p><b>Дрофа</b></p>
+        </div>
+        <div class="animal" onclick="openModal('dalmatian-pelican')">
+            <img src="https://s0.bloknot-taganrog.ru/thumb/850x0xcut/upload/iblock/831/4oxmaqoo92x3vnhqnvb81gc9xesgdzqj/pelikan.jpeg" alt="Кудрявый пеликан">
+            <p><b>Кудрявый пеликан</b></p>
+        </div>
+        <div class="animal" onclick="openModal('black-grouse')">
+            <img src="https://www.darwinmuseum.ru/subprojects/exposition/img/animal/a100844_.jpg" alt="Тетерев">
+            <p><b>Тетерев</b></p>
+        </div>
+    </div>
+</div>
+
+<div id="modal-container" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-info"></p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Автор: ученица 8Б класса Гурина Дарья</p>
+    <p>Руководитель: Учитель физики и информатики Октябрь Акиык</p>
+</div>
+
+<script>
+    function openModal(id) {
+        let info = {
+            "baloban": "🌍 Сокол. 📍 Казахстан, Россия. 🔢 500 особей. ⚠ Браконьерство. ✅ Заповедники. 💡 Скорость 200 км/ч.",
+            "golden-eagle": "🌍 Орёл. 📍 Алтай, Казахстан. 🔢 800 пар. ⚠ Утрата среды. ✅ Заповедники. 💡 Поднимает 6 кг.",
+            "white-tailed-eagle": "🌍 Орлан. 📍 Озёра Казахстана. 🔢 1500 пар. ⚠ Загрязнение. ✅ Охраняемые территории. 💡 Крылья 2.5 м.",
+            "whooper-swan": "🌍 Лебедь. 📍 ВКО, Европа. 🔢 <10 000 особей. ⚠ Охота. ✅ Программы защиты. 💡 Перелет 3000 км.",
+            "black-stork": "🌍 Аист. 📍 ВКО, Россия. 🔢 1000 пар. ⚠ Разрушение гнезд. ✅ Охраняемые зоны. 💡 Избегает людей.",
+            "steppe-eagle": "🌍 Орёл. 📍 Казахстан. 🔢 2000 особей. ⚠ Электролинии. ✅ Защита мест. 💡 Крупнейший орёл степей.",
+            "saker-falcon": "🌍 Сокол. 📍 Казахстан. 🔢 700 пар. ⚠ Охота. ✅ Контроль отлова. 💡 Быстрейший хищник.",
+            "great-bustard": "🌍 Дрофа. 📍 Казахстан. 🔢 5000 особей. ⚠ Сельхозработы. ✅ Защита степей. 💡 Самая тяжёлая птица.",
+            "dalmatian-pelican": "🌍 Пеликан. 📍 Казахстан. 🔢 2000 особей. ⚠ Загрязнение. ✅ Охраняемые зоны. 💡 Размах крыльев 3 м.",
+            "black-grouse": "🌍 Тетерев. 📍 Казахстан. 🔢 10 000 особей. ⚠ Вырубка лесов. ✅ Защита лесов. 💡 Яркий брачный танец."
+        };
+
+        document.getElementById("modal-title").innerText = id.replace("-", " ");
+        document.getElementById("modal-info").innerText = info[id];
+        document.getElementById("modal-container").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("modal-container").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

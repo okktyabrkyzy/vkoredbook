@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Млекопитающие Восточного Казахстана</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .animal-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .animal {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 180px;
+        }
+        .animal:hover {
+            transform: scale(1.05);
+        }
+        .animal img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: 10% auto;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">Млекопитающие Восточного Казахстана</div>
+
+<div class="container">
+    <a href="index.html" class="back-btn">Вернуться на главную</a>
+    <div class="animal-list">
+        <div class="animal" onclick="openModal('snow-leopard')">
+            <img src="https://www.acbk.kz/uploads/animals/XnQ-OKtC6XGMyxl0-95kFoATJchZAoAe.jpg" alt="Снежный барс">
+            <p><b>Снежный барс</b></p>
+        </div>
+        <div class="animal" onclick="openModal('manul')">
+            <img src="https://icdn.lenta.ru/images/2024/10/29/11/20241029114924667/square_320_11d6ed5dbebfeeb5195628df0daa013a.jpg" alt="Манул">
+            <p><b>Манул</b></p>
+        </div>
+        <div class="animal" onclick="openModal('argali')">
+            <img src="https://static.sibguide.ru/uploads/2025/02/argali.jpg" alt="Аргали">
+            <p><b>Аргали</b></p>
+        </div>
+        <div class="animal" onclick="openModal('dzeren')">
+            <img src="https://redbook.su/wp-content/uploads/2021/01/101-2-2-870x400.jpg" alt="Дзерен">
+            <p><b>Дзерен</b></p>
+        </div>
+        <div class="animal" onclick="openModal('saiga')">
+            <img src="https://kaztag.kz/upload/resize_cache/iblock/40f/881_500_1/saygak.jpg?173869139472376" alt="Сайгак">
+            <p><b>Сайгак</b></p>
+        </div>
+        <div class="animal" onclick="openModal('red-wolf')">
+            <img src="https://redbook28.ru/wp-content/uploads/2021/10/krasnyj-volk.jpg" alt="Красный волк">
+            <p><b>Красный волк</b></p>
+        </div>
+        <div class="animal" onclick="openModal('musk-deer')">
+            <img src="https://redbookrf.ru/wp-content/uploads/2015/02/3-95.jpg" alt="Кабарга">
+            <p><b>Кабарга</b></p>
+        </div>
+        <div class="animal" onclick="openModal('lynx')">
+            <img src="https://farm4.static.flickr.com/3525/5846259814_acc2c0c146_b.jpg" alt="Рысь">
+            <p><b>Рысь</b></p>
+        </div>
+        <div class="animal" onclick="openModal('brown-bear')">
+            <img src="https://redbook.su/wp-content/uploads/2021/01/001-6-870x400.jpg" alt="Бурый медведь">
+            <p><b>Бурый медведь</b></p>
+        </div>
+        <div class="animal" onclick="openModal('otter')">
+            <img src="https://redbook56.orenlib.ru/up/article/zhivotnye/severnaja-vydra.jpg" alt="Выдра">
+            <p><b>Выдра</b></p>
+        </div>
+    </div>
+</div>
+
+<div id="modal-container" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-info"></p>
+    </div>
+</div>
+<script>
+    function openModal(id) {
+        let info = {
+            "snow-leopard": "Крупная дикая кошка. \nМеста обитания: Алтай, Тарбагатай. \nЧисленность: менее 500. \nУгрозы: браконьерство. \nМеры: заповедники.",
+            "manul": "Редкая дикая кошка. \nМеста: степи ВКО. \nЧисленность: мала. \nУгрозы: охота, изменение климата. \nМеры: запрет охоты.",
+            "argali": "Крупный горный баран. \nМеста: Алтай. \nЧисленность: около 1500. \nУгрозы: охота, потеря пастбищ. \nМеры: заповедники.",
+            "dzeren": "Быстроногая антилопа. \nМеста: степи ВКО. \nЧисленность: сокращается. \nУгрозы: браконьерство, потеря среды. \nМеры: защита мест обитания.",
+            "saiga": "Степная антилопа. \nМеста: степи Казахстана. \nЧисленность: нестабильна. \nУгрозы: браконьерство, болезни. \nМеры: программы восстановления.",
+            "red-wolf": "Хищник, редкий вид. \nМеста: горы Алтая. \nЧисленность: мала. \nУгрозы: уничтожение среды. \nМеры: охраняемые зоны.",
+            "musk-deer": "Маленький олень без рогов. \nМеста: горы ВКО. \nЧисленность: сокращается. \nУгрозы: охота ради мускуса. \nМеры: строгая охрана.",
+            "lynx": "Хищная кошка. \nМеста: леса Алтая. \nЧисленность: стабильна. \nУгрозы: сокращение среды. \nМеры: заповедники.",
+            "brown-bear": "Крупный хищник. \nМеста: горы ВКО. \nЧисленность: стабильна. \nУгрозы: охота, изменение климата. \nМеры: защита мест обитания.",
+            "otter": "Полуводное млекопитающее. \nМеста: реки ВКО. \nЧисленность: мала. \nУгрозы: загрязнение рек. \nМеры: контроль загрязнения."
+        };
+        document.getElementById("modal-title").innerText = id.replace("-", " ");
+        document.getElementById("modal-info").innerText = info[id];
+        document.getElementById("modal-container").style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById("modal-container").style.display = "none";
+    }
+</script>
+<div class="footer">
+    <p>Автор: ученица 8Б класса Гурина Дарья</p>
+    <p>Руководитель: Учитель физики и информатики Октябрь Акиык</p>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редкие рептилии Восточного Казахстана</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .animal-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .animal {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 180px;
+        }
+        .animal:hover {
+            transform: scale(1.05);
+        }
+        .animal img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: 10% auto;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">Редкие рептилии Восточного Казахстана</div>
+
+<div class="container">
+    <a href="index.html" class="back-btn">Вернуться на главную</a>
+    <div class="animal-list">
+        <div class="animal" onclick="openModal('steppe-viper')">
+            <img src="https://www.tursar.ru/image/img2236_0.jpg" alt="Степная гадюка">
+			<p><b>Степная гадюка</b></p>
+        </div>
+        <div class="animal" onclick="openModal('mediterranean-turtle')">
+            <img src="https://myturtle.ru/wp-content/uploads/2016/09/1.jpg" alt="Средиземноморская черепаха">
+            <p><b>Средиземноморская черепаха</b></p>
+        </div>
+        <div class="animal" onclick="openModal('steppe-agama')">
+            <img src="https://reptilia.club/blocks/photos_photoresize.php?a=000100038&n=1&w=600&h=400" alt="Степная агама">
+            <p><b>Степная агама</b></p>
+        </div>
+        <div class="animal" onclick="openModal('sand-boa')">
+            <img src="https://dront.ru/wp-content/uploads/2016/12/peschaniy-udavchik-big.jpg" alt="Песчаный удав">
+            <p><b>Песчаный удав</b></p>
+        </div>
+    </div>
+</div>
+
+<div id="modal-container" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-info"></p>
+    </div>
+</div>
+
+<script>
+    function openModal(id) {
+        let info = {
+            "steppe-viper": "🌍 Ядовитая змея.\n📍 ВКО, степи Казахстана.\n🔢 Численность снижается.\n⚠ Разрушение среды обитания.\n✅ Охраняемые территории.\n💡 Выделяет сильный яд!",
+            "mediterranean-turtle": "🌍 Наземная черепаха.\n📍 ВКО, юг Казахстана.\n🔢 ~5000 особей.\n⚠ Потеря среды, браконьерство.\n✅ Заповедники.\n💡 Может жить до 80 лет!",
+            "steppe-agama": "🌍 Ящерица.\n📍 Казахстан, Монголия.\n🔢 Угроза исчезновения.\n⚠ Уничтожение ареала.\n✅ Контроль экосистемы.\n💡 Способна менять окраску!",
+            "sand-boa": "🌍 Некрупный удав.\n📍 Пески ВКО, Центральная Азия.\n🔢 2000 особей.\n⚠ Охота, разрушение ареала.\n✅ Охрана среды.\n💡 Прячется в песке!"
+        };
+
+        document.getElementById("modal-title").innerText = id.replace("-", " ");
+        document.getElementById("modal-info").innerText = info[id];
+        document.getElementById("modal-container").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("modal-container").style.display = "none";
+    }
+</script>
+
+<div class="footer">
+    <p>Автор: ученица 8Б класса Гурина Дарья</p>
+    <p>Руководитель: Учитель физики и информатики Октябрь Акиык</p>
+</div>
+
+</body>
+</html>

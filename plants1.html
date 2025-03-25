@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редкие растения Восточного Казахстана</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #228B22;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .plant-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .plant {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 180px;
+        }
+        .plant:hover {
+            transform: scale(1.05);
+        }
+        .plant img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin: 10% auto;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">Редкие растения Восточного Казахстана</div>
+
+<div class="container">
+    <a href="index.html" class="back-btn">Вернуться в главное меню</a>
+    <div class="plant-list">
+        <script>
+            let plants = [
+                { id: "ryabchik", name: "Рябчик казахский", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/20090410-13_Somme_-_Picardie_%280156%29.jpg/300px-20090410-13_Somme_-_Picardie_%280156%29.jpg", info: "многолетние растения, перезимовывающие и отчасти размножающиеся при посредстве подземных луковиц. Луковица состоит из нескольких (двух—четырёх—шести и большего числа) мясистых широких чешуек, у некоторых видов несросшихся (полутуникатные луковицы), у иных — сросшихся целиком или наполовину (туникатные); некоторые из чешуек несут в своей пазухе почки, развивающиеся в новые луковицы." },
+                { id: "lilia", name: "Лилия кудреватая", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Lilium_martagon_a.jpg/266px-Lilium_martagon_a.jpg", info: "Лилия кудреватая — многолетнее травянистое растение, высотой от 30 до 150 см (изредка достигает 200 см). Луковица может достигать 8 см в диаметре[12]. Луковица образована жёлтыми мясистыми чешуйчатыми листьями.Стебель крепкий круглый, обычно с красными пятнами. Продолговатые срединные листья собраны в мутовки по пять—шесть штук, выше по стеблю располагаются очерёдные листья. Ланцетные листья около 15 см в длину и 5 см шириной, имеют гладкие края.Цветки поникшие, в малоцветковых кистях. Околоцветник пурпурный с тёмно-фиолетовыми пятнами. Однако можно наблюдать растения самой различной окраски — от белой до почти чёрной. Доли околоцветника 3—4 см длиной, от самого основания отогнуты назад. Тычинки с фиолетовыми пыльниками[10]. Цветёт в июне — июле. На открытом месте, например, на солнечной поляне на растении формируются до двадцати цветков." },
+                { id: "tulpan", name: "Тюльпан Островского", img: "https://www.asienda.ru/data/cache/2016aug/31/55/547789_19003.jpg", info: "Тюльпан Островского (лат. Tulipa ostrowskiana) - это многолетнее луковичное однодольное растение, принадлежащее роду Тюльпан из семейства Лилейных. В 1897 году рассматриваемый вид растений был обнаружен в окрестностях города Верный, который в настоящей момент известен под названием Алма-Ата. Открытие представленной цветочной культуры принадлежит доктору философских наук, ботанику Эдуарду Людвиговичу Регелю, который впоследствии написал точную характеристику растения и ввел его в отдельный вид тюльпанов.Места обитания:В естественной среде обитания растение предпочитает возвышенные, пустынные, каменистые, солнечные места. Родиной тюльпана Островского является Казахстан, в основном окрестности горного хребта Заилийский Алатау, расположенном на северо-западе горной системы Тянь-Шань и распространяется вплоть до Киргизских гор, охватывая при этом Чуйскую долину и пустыню Мойынкум. Ареал произрастания рассматриваемой цветочной культуры не выходит за пределы определенной территории.Характеристика культуры:Тюльпан Островского является красивоцветущим травянистым низкорослым растением, достигающим в высоту не более 35 - 40 сантиметров. На бархатистом сизом цветоносе расположены прикорневые, близко посаженные, различные по длине, зеленые листья в количестве 2 - 4 штук. Листья, размер которых колеблется от 3 до 15 сантиметров, имеют удлиненно-линейную форму и сильно волнистые края." },
+                { id: "bereza", name: "Берёза Сапожникова", img: "https://lh5.googleusercontent.com/proxy/6XGqL0C0_hGJvV8_LbZYGXT7wRU8V_-jARYF4F8KCvicxmcKFQNPQ0lIn268FHI9H7BMaLDMG-xEKiv7CAqimK3FRWXdkd0", info: "Редкий вид берёзы, встречающийся в предгорьях. Угрозы: вырубка, изменение климата." },
+                { id: "adonis", name: "Адонис весенний", img: "https://tatarica.org/application/files/cache/thumbnails/03e49e5c62dcafbb15fe1c6e48453cae.jpg", info: "Лекарственное растение с жёлтыми цветами. Угрозы: сбор для медицинских целей." },
+                { id: "rhodiola", name: "Родиола розовая", img: "https://gardens.ru/img/work/nomencl/122952.jpg", info: "Ценное лекарственное растение, используемое в фармакологии. Угрозы: массовый сбор." },
+                { id: "kovyl", name: "Ковыль Залесского", img: "https://pp.userapi.com/c638817/v638817175/3fcaf/R_g9eeLFkRw.jpg", info: "Редкий вид ковылей, встречающийся в степях. Угрозы: распашка земель, выпас скота." },
+                { id: "shafran", name: "Шафран алтайский", img: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Crocus_alatavicus%2C_2011.jpg", info: "Красивый цветок, встречающийся в горах. Угрозы: сбор для украшений, изменение климата." },
+                { id: "kupavnica", name: "Купальница азиатская", img: "https://ir-3.ozone.ru/s3/multimedia-1-j/c1000/7115479435.jpg", info: "Яркий жёлтый цветок, растёт у рек. Угрозы: осушение болот, сбор на букеты." },
+                { id: "goryachavka", name: "Горечавка крупнолистная", img: "https://www.yeclinic.ru/wp-content/themes/raten/img/gorechavkakrupn-bot.jpg", info: "Горечавка с крупными листьями, используется в медицине. Угрозы: сбор и потеря среды обитания." }
+            ];
+
+            plants.forEach(plant => {
+                document.write(`<div class='plant' onclick='openModal("${plant.id}")'>
+                    <img src='${plant.img}' alt='${plant.name}'>
+                    <p><b>${plant.name}</b></p>
+                </div>`);
+            });
+        </script>
+    </div>
+</div>
+
+<div id="modal-container" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-info"></p>
+    </div>
+</div>
+
+<script>
+    function openModal(id) {
+        let plant = plants.find(p => p.id === id);
+        document.getElementById("modal-title").innerText = plant.name;
+        document.getElementById("modal-info").innerText = plant.info;
+        document.getElementById("modal-container").style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById("modal-container").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
